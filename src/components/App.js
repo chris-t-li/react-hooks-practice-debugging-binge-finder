@@ -22,6 +22,7 @@ function App() {
 
   function handleSearch(e) {
     setSearchTerm(e.target.value.toLowerCase());
+    //setShows(shows.filter((s) => s.name.toLowerCase().includes(searchTerm)))
   }
 
   function handleFilter(e) {
@@ -40,7 +41,13 @@ function App() {
   let displayShows = shows;
   if (filterByRating) {
     displayShows = displayShows.filter((s) => {
-      s.rating.average >= filterByRating;
+      return s.rating.average >= filterByRating;
+    });
+  }
+
+  if (searchTerm) {
+    displayShows = displayShows.filter(s => {
+      return s.name.toLowerCase().includes(searchTerm);
     });
   }
 
